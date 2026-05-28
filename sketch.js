@@ -246,7 +246,7 @@ const STAGE_DEFS = [
     portal:      { x: 640, y: 80, r: 100 },
     nextStage:   2,
     spawnEnemies() {
-      return Array.from({ length: 3 }, () => ({
+      return Array.from({ length: 1 }, () => ({
         x: random(200, MAP_W - 200),
         y: random(200, MAP_H - 200),
         size: 96,
