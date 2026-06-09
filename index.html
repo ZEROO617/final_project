@@ -8,6 +8,31 @@
     <script src="https://cdn.jsdelivr.net/npm/@mediapipe/camera_utils/camera_utils.js" crossorigin="anonymous"></script>
   </head>
   <body style="margin:0; background:#000;">
-    <script src="sketch.js"></script>
+    <!--
+      스크립트 로드 순서 = 의존성 순서 (위에서 아래로).
+      p5.js 글로벌 모드: 모든 파일이 같은 전역 스코프를 공유하므로 import가 없다.
+      constants.js가 가장 먼저(다른 파일이 CANVAS_W 등을 로드시점에 사용),
+      sketch.js가 가장 마지막(전역 상태 선언 + preload/setup/draw 진입점).
+    -->
+    <!-- 1. 설정값 -->
+    <script src="src/constants.js"></script>
+    <!-- 2. 입력 (손 추적) -->
+    <script src="src/input/GestureClassifier.js"></script>
+    <script src="src/input/HandTracker.js"></script>
+    <!-- 3. 시스템 (이펙트 / 스킬) -->
+    <script src="src/systems/EffectManager.js"></script>
+    <script src="src/systems/SkillSystem.js"></script>
+    <!-- 4. 전투 매니저 (개별 패턴 → 총괄) -->
+    <script src="src/battle/ProjectileManager.js"></script>
+    <script src="src/battle/enemy1.js"></script>
+    <script src="src/battle/enemy2.js"></script>
+    <script src="src/battle/enemy3.js"></script>
+    <script src="src/battle/BossManager.js"></script>
+    <script src="src/battle/BattleManager.js"></script>
+    <!-- 5. UI 렌더링 -->
+    <script src="src/ui/GameScreens.js"></script>
+    <script src="src/ui/BattleRenderer.js"></script>
+    <!-- 6. 진입점 (전역 상태 + p5 라이프사이클) -->
+    <script src="src/sketch.js"></script>
   </body>
 </html>
